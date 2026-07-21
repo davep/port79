@@ -1,13 +1,40 @@
 [project]
 name = "port79"
-version = "0.0.1"
-description = "Coming soon"
+version = "0.1.0"
+description = "An async-first, fully-typed client library for the Finger protocol (RFC 1288)"
 readme = "README.md"
 authors = [
     { name = "Dave Pearson", email = "davep@davep.org" }
 ]
 requires-python = ">=3.12"
 dependencies = []
+license = "MIT"
+keywords = [
+    "API",
+    "async",
+    "client",
+    "library",
+    "finger",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://port79.davep.dev/"
+Repository = "https://github.com/davep/port79"
+Documentation = "https://port79.davep.dev/"
+Source = "https://github.com/davep/port79"
+Issues = "https://github.com/davep/port79/issues"
+Discussions = "https://github.com/davep/port79/discussions"
 
 [project.scripts]
 port79 = "port79.__main__:main"
