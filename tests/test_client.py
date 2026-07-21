@@ -80,7 +80,12 @@ async def test_client_timeout_error() -> None:
     async def _hanging_handler(
         reader: asyncio.StreamReader, writer: asyncio.StreamWriter
     ) -> None:
-        await asyncio.sleep(5.0)
+        try:
+            await reader.read()
+        except Exception:
+            pass
+        finally:
+            writer.close()
 
     server = await asyncio.start_server(_hanging_handler, "127.0.0.1", 0)
     port = server.sockets[0].getsockname()[1]
