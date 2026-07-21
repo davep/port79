@@ -140,7 +140,11 @@ class Client:
             return await reader.read()
         finally:
             writer.close()
-            await writer.wait_closed()
+            try:
+                async with asyncio.timeout(0.5):
+                    await writer.wait_closed()
+            except Exception:
+                pass
 
     async def __aenter__(self) -> Self:
         """Enter the async context manager block.
