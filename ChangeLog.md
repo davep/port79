@@ -1,8 +1,8 @@
 # Port79 ChangeLog
 
-## Unreleased
+## v0.2.0
 
-**Released: WiP**
+**Released: 2026-07-23**
 
 - Made `FingerURI` constructor strict so that it requires a valid `finger:`
   URI string. ([#2](https://github.com/davep/port79/pull/2))
