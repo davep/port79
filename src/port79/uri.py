@@ -59,11 +59,11 @@ class FingerURI:
         """Initialise and validate a Finger URI.
 
         Args:
-            uri: The raw URI string, query string, or an existing FingerURI to clone.
+            uri: The raw URI string or an existing FingerURI to clone.
 
         Raises:
-            URIError: If the URI is empty, the host is missing or invalid,
-                or if parsing of the URI fails.
+            URIError: If the URI is empty, the scheme is missing or is not 'finger',
+                the host is missing or invalid, or if parsing of the URI fails.
         """
         self._scheme: str
         """The scheme portion of the URI (always 'finger')."""
@@ -96,8 +96,7 @@ class FingerURI:
         if not uri or not uri.strip():
             raise URIError("URI cannot be empty")
 
-        cleaned = uri.strip()
-        parsed_uri = self._parse_input_string(cleaned)
+        parsed_uri = self._parse_full_uri(uri)
 
         self._scheme = parsed_uri._scheme
         self._host = parsed_uri._host
@@ -109,29 +108,7 @@ class FingerURI:
         self._query = parsed_uri._query
 
     @classmethod
-    def _parse_input_string(cls, raw: str) -> FingerURI:
-        """Parse an input string into a FingerURI instance.
-
-        Args:
-            raw: The raw input string to parse.
-
-        Returns:
-            A new FingerURI instance.
-
-        Raises:
-            URIError: If parsing fails or required fields are missing.
-        """
-        normalised = _normalise_scheme(raw)
-
-        # Handle full URI form: finger://...
-        if normalised.startswith(FINGER_PREFIX) or "://" in normalised:
-            return cls._parse_full_uri(normalised)
-
-        # Handle target string form: e.g. "davep@plan.cat", "/W davep@plan.cat", "plan.cat"
-        return cls._parse_target_string(raw)
-
-    @classmethod
-    def _parse_full_uri(cls, uri_str: str) -> FingerURI:
+    def _parse_full_uri(cls, uri_str: str) -> Self:
         """Parse a full URI string with scheme.
 
         Args:
@@ -143,10 +120,15 @@ class FingerURI:
         Raises:
             URIError: If scheme or host is invalid.
         """
+        cleaned = uri_str.strip()
+        if not cleaned:
+            raise URIError("URI cannot be empty")
+
+        normalised = _normalise_scheme(cleaned)
         to_parse = (
-            "https://" + uri_str.removeprefix(FINGER_PREFIX)
-            if uri_str.startswith(FINGER_PREFIX)
-            else uri_str
+            "https://" + normalised.removeprefix(FINGER_PREFIX)
+            if normalised.startswith(FINGER_PREFIX)
+            else normalised
         )
 
         try:
@@ -206,7 +188,7 @@ class FingerURI:
             raise URIError(f"Failed to parse URI: {e}") from e
 
     @classmethod
-    def _parse_target_string(cls, target: str) -> FingerURI:
+    def _parse_target_string(cls, target: str) -> Self:
         """Parse a plain target string such as 'user@host' or '/W user@host'.
 
         Args:
@@ -344,7 +326,16 @@ class FingerURI:
         Raises:
             URIError: If parsing fails or required host is missing.
         """
-        return cls(target)
+        if not target or not target.strip():
+            raise URIError("URI cannot be empty")
+
+        cleaned = target.strip()
+        normalised = _normalise_scheme(cleaned)
+
+        if normalised.startswith(FINGER_PREFIX) or "://" in normalised:
+            return cls(cleaned)
+
+        return cls._parse_target_string(cleaned)
 
     @property
     def scheme(self) -> str:

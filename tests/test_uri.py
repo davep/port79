@@ -175,6 +175,18 @@ def test_finger_uri_validation_errors() -> None:
         FingerURI("   ")
 
     with pytest.raises(URIError):
+        FingerURI("davep")
+
+    with pytest.raises(URIError):
+        FingerURI("davep@plan.cat")
+
+    with pytest.raises(URIError):
+        FingerURI("/W davep@plan.cat")
+
+    with pytest.raises(URIError):
+        FingerURI("plan.cat")
+
+    with pytest.raises(URIError):
         FingerURI("http://plan.cat/davep")
 
     with pytest.raises(URIError):

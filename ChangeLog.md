@@ -1,5 +1,15 @@
 # Port79 ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Made `FingerURI` constructor strict so that it requires a valid `finger:`
+  URI string. ([#2](https://github.com/davep/port79/pull/2))
+- Updated `FingerURI.from_string` to implement permissive parsing for target
+  strings (such as `user@host`, `/W user@host`, `@host`).
+  ([#2](https://github.com/davep/port79/pull/2))
+
 ## v0.1.0
 
 **Released: 2026-07-21**
