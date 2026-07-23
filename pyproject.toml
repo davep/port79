@@ -1,6 +1,6 @@
 [project]
 name = "port79"
-version = "0.1.0"
+version = "0.2.0"
 description = "An async-first, fully-typed client library for the Finger protocol (RFC 1288)"
 readme = "README.md"
 authors = [
