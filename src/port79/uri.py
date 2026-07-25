@@ -1,6 +1,10 @@
 """Finger URI representation and parsing based on RFC 1288."""
 
 ##############################################################################
+# Future imports.
+from __future__ import annotations
+
+##############################################################################
 # Python imports.
 from functools import cached_property
 from typing import Final, Self
