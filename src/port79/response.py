@@ -1,10 +1,6 @@
 """Response class representing Finger query results and protocol metadata."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Python imports.
 from functools import cached_property
 

@@ -1,10 +1,6 @@
 """Async Finger protocol client implementation."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Python imports.
 import asyncio
 import builtins

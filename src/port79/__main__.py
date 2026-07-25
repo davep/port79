@@ -1,15 +1,10 @@
 """Command-line interface entry point for the port79 Finger client."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Python imports.
 import argparse
 import asyncio
 import sys
-from collections.abc import Sequence
 
 ##############################################################################
 # Local imports.
@@ -19,11 +14,8 @@ from .uri import FingerURI
 
 
 ##############################################################################
-def parse_args(args: Sequence[str] | None = None) -> argparse.Namespace:
+def parse_args() -> argparse.Namespace:
     """Parse command-line arguments.
-
-    Args:
-        args: Sequence of command-line argument strings, or None for sys.argv[1:].
 
     Returns:
         The parsed Namespace object.
@@ -56,7 +48,7 @@ def parse_args(args: Sequence[str] | None = None) -> argparse.Namespace:
         default=DEFAULT_TIMEOUT,
         help="Network timeout in seconds (default: 10.0).",
     )
-    return parser.parse_args(args)
+    return parser.parse_args()
 
 
 ##############################################################################
@@ -100,13 +92,9 @@ async def run_cli(
 
 
 ##############################################################################
-def main(args: Sequence[str] | None = None) -> None:
-    """Main entry point for the port79 command-line client.
-
-    Args:
-        args: Sequence of command-line argument strings, or None for sys.argv[1:].
-    """
-    parsed = parse_args(args)
+def main() -> None:
+    """Main entry point for the port79 command-line client."""
+    parsed = parse_args()
     try:
         exit_code = asyncio.run(
             run_cli(

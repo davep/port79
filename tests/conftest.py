@@ -1,10 +1,6 @@
 """Pytest test fixtures and helper mock server for port79 tests."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Python imports.
 import asyncio
 from collections.abc import AsyncGenerator

@@ -1,10 +1,6 @@
 """Finger query classification and types as defined by RFC 1288."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Python imports.
 from enum import Enum, auto
 
