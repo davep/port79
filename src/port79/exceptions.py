@@ -1,9 +1,5 @@
 """Exception hierarchy for the port79 Finger client library."""
 
-##############################################################################
-# Future imports.
-from __future__ import annotations
-
 
 ##############################################################################
 class Port79Error(Exception):

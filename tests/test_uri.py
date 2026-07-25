@@ -1,10 +1,6 @@
 """Unit tests for FingerURI class."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Third party imports.
 import pytest
 

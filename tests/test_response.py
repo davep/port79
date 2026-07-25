@@ -1,10 +1,6 @@
 """Unit tests for Response class."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Local imports.
 from port79.query import QueryKind
 from port79.response import Response

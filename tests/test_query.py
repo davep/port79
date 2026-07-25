@@ -1,10 +1,6 @@
 """Unit tests for QueryKind enumeration."""
 
 ##############################################################################
-# Future imports.
-from __future__ import annotations
-
-##############################################################################
 # Local imports.
 from port79.query import QueryKind
 
