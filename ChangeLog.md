@@ -1,8 +1,8 @@
 # Port79 ChangeLog
 
-## Unreleased
+## v1.0.0
 
-**Released: WiP**
+**Released: 2026-07-25**
 
 - Added usual dunder library metadata (`__version__`, etc).
   ([#4](https://github.com/davep/port79/pull/4))
