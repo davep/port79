@@ -1,6 +1,6 @@
 [project]
 name = "port79"
-version = "1.0.0"
+version = "1.1.0"
 description = "An async-first, fully-typed client library for the Finger protocol (RFC 1288)"
 readme = "README.md"
 authors = [
@@ -40,7 +40,7 @@ Discussions = "https://github.com/davep/port79/discussions"
 port79 = "port79.__main__:main"
 
 [build-system]
-requires = ["uv_build>=0.11.30,<0.12.0"]
+requires = ["uv_build>=0.11.30,<0.13.0"]
 build-backend = "uv_build"
 
 [[tool.uv.index]]

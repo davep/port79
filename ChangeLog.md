@@ -1,8 +1,8 @@
 # Port79 ChangeLog
 
-## Unreleased
+## v1.1.0
 
-**Released: WiP**
+**Released: 2026-09-02**
 
 - Added `resolve` method to `FingerURI` to resolve relative target URIs and
   usernames against a base URI.
