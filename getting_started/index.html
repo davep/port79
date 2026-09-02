@@ -908,19 +908,19 @@
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">Client</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># Execute the request (accepts &#39;user@host&#39; or a FingerURI)</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;davep@plan.cat&quot;</span><span class="p">)</span>
+            <span class="c1"># Execute the request (accepts 'user@host' or a FingerURI)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">"davep@plan.cat"</span><span class="p">)</span>
 
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target Host: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">target_host</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query Kind:  </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">query_kind</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latency:     </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">latency</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Response Body ---&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Target Host: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">target_host</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Query Kind:  </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">query_kind</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Latency:     </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">latency</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"--- Response Body ---"</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
         <span class="k">except</span> <span class="n">Port79Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Request failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Request failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
 <hr />
@@ -929,28 +929,29 @@
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">port79</span><span class="w"> </span><span class="kn">import</span> <span class="n">FingerURI</span>
 
 <span class="c1"># Parse from a query target string</span>
-<span class="n">uri</span> <span class="o">=</span> <span class="n">FingerURI</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;/W davep@plan.cat&quot;</span><span class="p">)</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="n">FingerURI</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">"/W davep@plan.cat"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>                <span class="c1"># &#39;plan.cat&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>            <span class="c1"># &#39;davep&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>                <span class="c1"># 'plan.cat'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>            <span class="c1"># 'davep'</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">is_verbose</span><span class="p">)</span>          <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">raw_query</span><span class="p">)</span>           <span class="c1"># &#39;/W davep\r\n&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">raw_query</span><span class="p">)</span>           <span class="c1"># '/W davep\r\n'</span>
 
 <span class="c1"># FingerURI objects are immutable; construct new instances with updated parts</span>
 <span class="n">custom_port_uri</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">with_port</span><span class="p">(</span><span class="mi">7979</span><span class="p">)</span>
 <span class="n">system_list_uri</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">with_username</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">resolved_uri</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="s2">"alice"</span><span class="p">)</span>
 </code></pre></div>
 <hr />
 <h2 id="verbose-and-system-queries">Verbose and System Queries</h2>
 <p>RFC 1288 supports requesting detailed ("verbose") output using the <code>/W</code> switch, as well as system-wide user listings (empty user queries):</p>
 <div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">with</span> <span class="n">Client</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="c1"># System query: requests a list of all logged-in users on the host</span>
-    <span class="n">system_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;plan.cat&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Is System Query? </span><span class="si">{</span><span class="n">system_response</span><span class="o">.</span><span class="n">is_system_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">system_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">"plan.cat"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Is System Query? </span><span class="si">{</span><span class="n">system_response</span><span class="o">.</span><span class="n">is_system_query</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1"># Verbose query: requests long-form output from the server</span>
-    <span class="n">verbose_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;finger://plan.cat/davep?W&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Is Verbose? </span><span class="si">{</span><span class="n">verbose_response</span><span class="o">.</span><span class="n">is_verbose</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">verbose_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">"finger://plan.cat/davep?W"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Is Verbose? </span><span class="si">{</span><span class="n">verbose_response</span><span class="o">.</span><span class="n">is_verbose</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <hr />
 <h2 id="exception-hierarchy">Exception Hierarchy</h2>

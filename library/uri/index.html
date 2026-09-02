@@ -1056,6 +1056,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#port79.uri.FingerURI.resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;resolve
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" resolve">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port79.uri.FingerURI.resolve(relative_uri)" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-parameter"></code>&nbsp;relative_uri
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#port79.uri.FingerURI.with_default_scheme" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1693,6 +1721,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#port79.uri.FingerURI.resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;resolve
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" resolve">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port79.uri.FingerURI.resolve(relative_uri)" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-parameter"></code>&nbsp;relative_uri
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#port79.uri.FingerURI.with_default_scheme" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1922,12 +1978,12 @@
   </span>
 
 </h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">FINGER_PREFIX</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Final" href="https://docs.python.org/3/library/typing.html#typing.Final">Final</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n"><a class="autorefs autorefs-internal" title="            FINGER_SCHEME
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FINGER_PREFIX</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Final" href="https://docs.python.org/3/library/typing.html#typing.Final">Final</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n"><a class="autorefs autorefs-internal" title="            FINGER_SCHEME
 
 
   
       module-attribute
-   (port79.uri.FINGER_SCHEME)" href="#port79.uri.FINGER_SCHEME">FINGER_SCHEME</a></span><span class="si">}</span><span class="s1">://&#39;</span>
+   (port79.uri.FINGER_SCHEME)" href="#port79.uri.FINGER_SCHEME">FINGER_SCHEME</a></span><span class="si">}</span><span class="s1">://'</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1951,7 +2007,7 @@
   </span>
 
 </h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">FINGER_SCHEME</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Final" href="https://docs.python.org/3/library/typing.html#typing.Final">Final</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;finger&#39;</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">FINGER_SCHEME</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Final" href="https://docs.python.org/3/library/typing.html#typing.Final">Final</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="s1">'finger'</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2798,6 +2854,103 @@ the host is missing or invalid, or if parsing of the URI fails.</p>
             <td>
               <div class="doc-md-description">
                 <p>If the resulting URI components are invalid.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="port79.uri.FingerURI.resolve" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">resolve</span>
+
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">resolve</span><span class="p">(</span><span class="n"><a class="autorefs autorefs-internal" title="relative_uri (port79.uri.FingerURI.resolve(relative_uri))" href="#port79.uri.FingerURI.resolve(relative_uri)">relative_uri</a></span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            FingerURI (port79.uri.FingerURI)" href="#port79.uri.FingerURI">FingerURI</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Self" href="https://docs.python.org/3/library/typing.html#typing.Self">Self</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Resolve a relative URI string against this URI as a base.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h4 id="port79.uri.FingerURI.resolve(relative_uri)" class="doc doc-heading doc-heading-parameter">                  <code>relative_uri</code>
+</h4>            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-internal" title="            FingerURI (port79.uri.FingerURI)" href="#port79.uri.FingerURI">FingerURI</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The relative or absolute target URI string or FingerURI.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" title="typing.Self" href="https://docs.python.org/3/library/typing.html#typing.Self">Self</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A new FingerURI representing the resolved target.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            URIError (port79.exceptions.URIError)" href="../exceptions/#port79.exceptions.URIError">URIError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If resolution fails or target is invalid.</p>
               </div>
             </td>
           </tr>
