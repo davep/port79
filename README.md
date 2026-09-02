@@ -77,6 +77,7 @@ print(uri.raw_query)     # '/W davep\r\n'
 # Create modified copies
 custom_port_uri = uri.with_port(7979)
 system_uri = uri.with_username(None)
+resolved_uri = uri.resolve("alice")
 ```
 
 ### 3. Verbose and System Queries

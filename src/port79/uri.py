@@ -10,6 +10,7 @@ from functools import cached_property
 from typing import Final, Self
 from urllib.parse import (
     unquote,
+    urljoin,
     urlparse,
     uses_fragment,
     uses_netloc,
@@ -513,6 +514,38 @@ class FingerURI:
             A new FingerURI instance with updated verbose setting.
         """
         return self.replace(is_verbose=verbose)
+
+    def resolve(self, relative_uri: str | FingerURI) -> Self:
+        """Resolve a relative URI string against this URI as a base.
+
+        Args:
+            relative_uri: The relative or absolute target URI string or FingerURI.
+
+        Returns:
+            A new FingerURI representing the resolved target.
+
+        Raises:
+            URIError: If resolution fails or target is invalid.
+        """
+        base_str = str(self)
+        base_http = base_str.replace(FINGER_PREFIX, "https://", 1)
+
+        relative_str = (
+            relative_uri if isinstance(relative_uri, str) else str(relative_uri)
+        )
+        relative_cleaned = _normalise_scheme(relative_str.strip())
+        relative_http = relative_cleaned
+        if relative_cleaned.startswith(FINGER_PREFIX):
+            relative_http = "https://" + relative_cleaned.removeprefix(FINGER_PREFIX)
+
+        try:
+            resolved_http = urljoin(base_http, relative_http)
+            resolved_finger = resolved_http.replace("https://", FINGER_PREFIX, 1)
+            return self.__class__(resolved_finger)
+        except Exception as error:
+            raise URIError(
+                f"Failed to resolve relative URI '{relative_uri}' against base '{base_str}': {error}"
+            ) from error
 
     @cached_property
     def bytes_left(self) -> int:

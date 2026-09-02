@@ -1,5 +1,13 @@
 # Port79 ChangeLog
 
+## Unreleased
+
+**Released: WiP**
+
+- Added `resolve` method to `FingerURI` to resolve relative target URIs and
+  usernames against a base URI.
+  ([#7](https://github.com/davep/port79/pull/7))
+
 ## v1.0.0
 
 **Released: 2026-07-25**

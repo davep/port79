@@ -214,4 +214,155 @@ def test_finger_uri_dunder_methods() -> None:
     assert not uri1.is_too_long
 
 
+##############################################################################
+def test_finger_uri_resolve_relative_username() -> None:
+    """Test resolving relative usernames and paths against a base FingerURI."""
+    base = FingerURI("finger://plan.cat/davep")
+
+    resolved_user = base.resolve("alice")
+    assert resolved_user.host == "plan.cat"
+    assert resolved_user.port == 79
+    assert resolved_user.username == "alice"
+    assert str(resolved_user) == "finger://plan.cat/alice"
+
+    resolved_abs = base.resolve("/alice")
+    assert resolved_abs.host == "plan.cat"
+    assert resolved_abs.username == "alice"
+    assert str(resolved_abs) == "finger://plan.cat/alice"
+
+    resolved_system = base.resolve("/")
+    assert resolved_system.host == "plan.cat"
+    assert resolved_system.username is None
+    assert str(resolved_system) == "finger://plan.cat/"
+
+    resolved_empty = base.resolve("")
+    assert resolved_empty.host == "plan.cat"
+    assert resolved_empty.username == "davep"
+    assert str(resolved_empty) == "finger://plan.cat/davep"
+
+
+##############################################################################
+def test_finger_uri_resolve_from_system_base() -> None:
+    """Test resolving from a system-wide query base URI."""
+    base = FingerURI("finger://plan.cat/")
+
+    resolved = base.resolve("alice")
+    assert resolved.host == "plan.cat"
+    assert resolved.username == "alice"
+    assert str(resolved) == "finger://plan.cat/alice"
+
+    resolved_system = base.resolve("/")
+    assert resolved_system.host == "plan.cat"
+    assert resolved_system.username is None
+    assert str(resolved_system) == "finger://plan.cat/"
+
+
+##############################################################################
+def test_finger_uri_resolve_custom_port() -> None:
+    """Test that resolving preserves custom TCP ports."""
+    base = FingerURI("finger://plan.cat:7979/davep")
+
+    resolved = base.resolve("alice")
+    assert resolved.host == "plan.cat"
+    assert resolved.port == 7979
+    assert resolved.username == "alice"
+    assert str(resolved) == "finger://plan.cat:7979/alice"
+
+    resolved_system = base.resolve("/")
+    assert resolved_system.host == "plan.cat"
+    assert resolved_system.port == 7979
+    assert resolved_system.username is None
+    assert str(resolved_system) == "finger://plan.cat:7979/"
+
+
+##############################################################################
+def test_finger_uri_resolve_scheme_and_absolute() -> None:
+    """Test resolving absolute URIs, scheme-relative URIs, and FingerURI instances."""
+    base = FingerURI("finger://plan.cat/davep")
+
+    resolved_abs = base.resolve("finger://example.com/alice")
+    assert resolved_abs.host == "example.com"
+    assert resolved_abs.username == "alice"
+    assert str(resolved_abs) == "finger://example.com/alice"
+
+    resolved_net = base.resolve("//example.com/alice")
+    assert resolved_net.host == "example.com"
+    assert resolved_net.username == "alice"
+    assert str(resolved_net) == "finger://example.com/alice"
+
+    resolved_obj = base.resolve(FingerURI("finger://example.com:7980/carol"))
+    assert resolved_obj.host == "example.com"
+    assert resolved_obj.port == 7980
+    assert resolved_obj.username == "carol"
+    assert str(resolved_obj) == "finger://example.com:7980/carol"
+
+    resolved_upper = base.resolve("FINGER://example.com/alice")
+    assert resolved_upper.host == "example.com"
+    assert resolved_upper.username == "alice"
+    assert str(resolved_upper) == "finger://example.com/alice"
+
+
+##############################################################################
+def test_finger_uri_resolve_query_and_verbose() -> None:
+    """Test resolving query parameters and verbose switch."""
+    base = FingerURI("finger://plan.cat/davep")
+
+    resolved_w = base.resolve("?W")
+    assert resolved_w.host == "plan.cat"
+    assert resolved_w.username == "davep"
+    assert resolved_w.is_verbose
+    assert str(resolved_w) == "finger://plan.cat/davep?W"
+
+    resolved_user_w = base.resolve("alice?W")
+    assert resolved_user_w.host == "plan.cat"
+    assert resolved_user_w.username == "alice"
+    assert resolved_user_w.is_verbose
+    assert str(resolved_user_w) == "finger://plan.cat/alice?W"
+
+    resolved_sys_w = base.resolve("/?W")
+    assert resolved_sys_w.host == "plan.cat"
+    assert resolved_sys_w.username is None
+    assert resolved_sys_w.is_verbose
+    assert str(resolved_sys_w) == "finger://plan.cat/?W"
+
+    base_w = FingerURI("finger://plan.cat/davep?W")
+    resolved_from_w = base_w.resolve("alice")
+    assert resolved_from_w.host == "plan.cat"
+    assert resolved_from_w.username == "alice"
+    assert not resolved_from_w.is_verbose
+    assert str(resolved_from_w) == "finger://plan.cat/alice"
+
+
+##############################################################################
+def test_finger_uri_resolve_forwarding() -> None:
+    """Test resolving forwarding queries."""
+    base = FingerURI("finger://plan.cat/davep")
+
+    resolved_fwd = base.resolve("alice@gateway.org")
+    assert resolved_fwd.host == "plan.cat"
+    assert resolved_fwd.username == "alice"
+    assert resolved_fwd.target_host == "gateway.org"
+    assert resolved_fwd.is_forwarding_query
+    assert resolved_fwd.query_kind == QueryKind.USER_FORWARDING
+
+    resolved_fwd_sys = base.resolve("@gateway.org")
+    assert resolved_fwd_sys.host == "plan.cat"
+    assert resolved_fwd_sys.username is None
+    assert resolved_fwd_sys.target_host == "gateway.org"
+    assert resolved_fwd_sys.is_forwarding_query
+    assert resolved_fwd_sys.query_kind == QueryKind.FORWARDING
+
+
+##############################################################################
+def test_finger_uri_resolve_errors() -> None:
+    """Test that resolving invalid targets raises URIError."""
+    base = FingerURI("finger://plan.cat/davep")
+
+    with pytest.raises(URIError, match="Failed to resolve relative URI"):
+        base.resolve("http://google.com")
+
+    with pytest.raises(URIError, match="Failed to resolve relative URI"):
+        base.resolve("finger://plan.cat:invalid_port/")
+
+
 ### test_uri.py ends here

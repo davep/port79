@@ -7,7 +7,7 @@ Port79 is an async-first, fully type-hinted client library and command-line inte
 ## Architecture Overview
 
 - **[`port79.client`][port79.client]**: Contains [`Client`][port79.client.Client], the main asynchronous client interface for executing Finger queries over TCP (port 79). Supports async context management (`async with Client() as client:`).
-- **[`port79.uri`][port79.uri]**: Contains [`FingerURI`][port79.uri.FingerURI], representing validated Finger protocol URIs (`finger://host/user`) and target format strings (`user@host`, `/W user@host`, `@host`). Provides immutable modification methods (`with_host`, `with_port`, `with_username`, `with_verbose`, `replace`).
+- **[`port79.uri`][port79.uri]**: Contains [`FingerURI`][port79.uri.FingerURI], representing validated Finger protocol URIs (`finger://host/user`) and target format strings (`user@host`, `/W user@host`, `@host`). Provides immutable modification and resolution methods (`with_host`, `with_port`, `with_username`, `with_verbose`, `replace`, `resolve`).
 - **[`port79.query`][port79.query]**: Defines the [`QueryKind`][port79.query.QueryKind] enumeration (`SYSTEM`, `USER`, `FORWARDING`, `USER_FORWARDING`) matching RFC 1288 query classifications.
 - **[`port79.response`][port79.response]**: Contains [`Response`][port79.response.Response], encapsulating server response text, lines, raw bytes, latency, and query metadata.
 - **[`port79.exceptions`][port79.exceptions]**: Exception hierarchy rooted at [`Port79Error`][port79.exceptions.Port79Error], including [`URIError`][port79.exceptions.URIError], [`ConnectionError`][port79.exceptions.ConnectionError], [`TimeoutError`][port79.exceptions.TimeoutError], and [`ResponseError`][port79.exceptions.ResponseError].

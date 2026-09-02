@@ -63,6 +63,7 @@ print(uri.raw_query)           # '/W davep\r\n'
 # FingerURI objects are immutable; construct new instances with updated parts
 custom_port_uri = uri.with_port(7979)
 system_list_uri = uri.with_username(None)
+resolved_uri = uri.resolve("alice")
 ```
 
 ---
